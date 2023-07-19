@@ -1,5 +1,5 @@
-import { IColum } from '../types/columns';
-import TableComponent from './TableComponent';
+import { IColum } from '../app/types/columns';
+import TableComponent from '../components/table/TableComponent';
 
 type IProduct = {
   id: string | number;

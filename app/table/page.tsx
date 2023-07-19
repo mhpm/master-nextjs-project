@@ -1,5 +1,5 @@
-import TableProductoContainer from './TableProductContainer';
-import TableUserContainer from './TableUserContainer';
+import TableProductoContainer from '../../containers/TableProductContainer';
+import TableUserContainer from '../../containers/TableUserContainer';
 
 const TablePage = () => {
   return (

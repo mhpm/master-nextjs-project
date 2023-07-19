@@ -4,4 +4,5 @@ export type IColum<Data>= {
     width?: string;
     numeric?: boolean;
     centered?: boolean;
+    isSelected?: boolean;
   }

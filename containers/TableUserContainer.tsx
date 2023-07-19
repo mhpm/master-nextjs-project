@@ -1,5 +1,7 @@
-import { IColum } from '../types/columns';
-import TableComponent from './TableComponent';
+'use client';
+
+import { IColum } from '../app/types/columns';
+import TableComponent from '../components/table/TableComponent';
 
 type IUser = {
   id: string | number;
@@ -42,7 +44,15 @@ const TableUserContainer = async () => {
 
   const data: IUser[] = await res.json();
 
-  return <TableComponent data={data} columns={columns} />;
+  return (
+    <TableComponent
+      checkboxSelection
+      data={data}
+      columns={columns}
+      onRowClick={(item) => console.log(item)}
+      onCheckAll={(item) => console.log(item)}
+    />
+  );
 };
 
 export default TableUserContainer;

@@ -1,0 +1,69 @@
+.table {
+  border: none;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+
+  tr {
+    border-bottom: 1px solid #ddd;
+    padding: 0.35em;
+    cursor: pointer;
+  }
+
+  th,
+  td {
+    padding: 0.625em;
+  }
+
+  th {
+    font-size: 0.85em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: left;
+  }
+
+  @media screen and (max-width: 1024px) {
+    caption {
+      font-size: 1.3em;
+    }
+
+    thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+
+    tr {
+      border-radius: 7px;
+      border: 1px solid #ddd;
+      display: block;
+      margin-bottom: 0.625em;
+    }
+
+    td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: 0.8em;
+      text-align: right;
+
+      &::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: rgb(97, 97, 97);
+      }
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }    
+  }
+}
