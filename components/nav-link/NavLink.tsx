@@ -7,18 +7,21 @@ import { useSelectedLayoutSegment } from 'next/navigation';
 export default function NavLink({
   root,
   slug,
+  targetSegment,
   className,
   children,
 }: {
   root: string;
-  slug: string | null;
+  slug: string;
+  targetSegment: string | null;
   className: string;
   children: React.ReactNode;
 }) {
   // Navigating to `/blog/hello-world` will return 'hello-world'
   // for the selected layout segment
   const segment = useSelectedLayoutSegment();
-  const isActive = slug === segment;
+  const isActive = targetSegment === segment;
+
 
   return (
     <Link

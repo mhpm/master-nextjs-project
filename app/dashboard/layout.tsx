@@ -16,13 +16,14 @@ export default function DashboardLayout({
   return (
     <section className="p-2">
       <h2 className="w-full h-100 p-5 bg-neutral-400 text-white">
-        Dashboard Layout
+        Dashboard Header
       </h2>
       <div className="flex gap-2 mt-2 h-full">
         <nav className="w-[200px]">
           <div className="bg-neutral-700 text-white h-[400px] text-center flex flex-col">
             {links.map((link, index) => (
               <NavLink
+                targetSegment={link.targetSegment}
                 key={index}
                 root="dashboard"
                 slug={link.path}
