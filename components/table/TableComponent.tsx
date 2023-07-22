@@ -49,6 +49,11 @@ function TableComponent<Data>({
         return { ...rest };
       });
 
+      if(removedSelectedProperty.length)
+        setCheckAll(true)
+      else
+        setCheckAll(false)
+
       setFormatData(updateData);
 
       return onRowClick(removedSelectedProperty as Data[]);
@@ -78,7 +83,7 @@ function TableComponent<Data>({
             <th style={{ width: 40 }}>
               <input
                 onChange={handleCheckAll}
-                defaultChecked={checkAll}
+                checked={checkAll}
                 type="checkbox"
                 name=""
                 id=""
@@ -100,7 +105,7 @@ function TableComponent<Data>({
       </thead>
       <tbody>
         {formatData.map((item, formatIndex) => (
-          <tr key={formatIndex} className={`text-neutral-600 hover:bg-neutral-200 ${item.isSelected ? 'bg-neutral-200': 'bg-white'}`}>
+          <tr key={formatIndex} className={`text-neutral-600 hover:bg-neutral-200 ${item.isSelected ? 'bg-neutral-100': 'bg-white'}`}>
             {checkboxSelection && (
               <td key={`checkbox${formatIndex}`}>
                 <input
