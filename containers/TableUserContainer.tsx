@@ -15,7 +15,7 @@ const columns: IColum<IUser>[] = [
   {
     field: 'id',
     label: 'ID',
-    width: '40px',
+    width: '60px',
     numeric: true,
   },
   {
