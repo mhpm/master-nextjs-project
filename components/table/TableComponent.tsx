@@ -78,10 +78,8 @@ function TableComponent<Data>({
   };
 
   const sortData = (field: string) => {
-    const sortedArray: IFormatData<Data>[] = formatData.sort(
-      (n1: any, n2: any) => n1[field].localeCompare(n2[field])
-    );
-    console.log('sortedArray: ', sortedArray);
+    const sortedArray: IFormatData<Data>[] = formatData
+      .sort((n1: any, n2: any) => (n1[field] < n2[field]) ? -1 : 1).slice(0);
 
     setFormatData(sortedArray);
   };
@@ -108,9 +106,16 @@ function TableComponent<Data>({
               style={{ width: column?.width ? column.width : 'auto' }}
               onClick={() => sortData(column.field.toString())}
             >
-              <div className='flex'>
+              <div className="flex">
                 {column.field.toString()}
-                <Image className='hover:bg-neutral-200 rounded-full p-[1px]' priority src={sort_icon} alt="sorting" width={20} height={15} />
+                <Image
+                  className="hover:bg-neutral-200 rounded-full p-[1px]"
+                  priority
+                  src={sort_icon}
+                  alt="sorting"
+                  width={20}
+                  height={15}
+                />
               </div>
             </th>
           ))}

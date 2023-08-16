@@ -22,7 +22,6 @@ export default function NavLink({
   const segment = useSelectedLayoutSegment();
   const isActive = targetSegment === segment;
 
-
   return (
     <Link
       href={`/${root}/${slug}`}
