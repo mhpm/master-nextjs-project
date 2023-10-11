@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { FaXmark } from 'react-icons/fa6';
 
 enum ToastTypes {
@@ -6,8 +7,6 @@ enum ToastTypes {
   danger = 'danger',
   info = 'info',
 }
-
-// type ToastVariations<T = boolean> = { [key in keyof typeof ToastTypes]: T };
 
 interface ToastProps {
   /**
@@ -18,6 +17,14 @@ interface ToastProps {
    * Optional Classes
    */
   className?: string;
+  /**
+   * optional closable button
+   */
+  closable?: boolean;
+  /**
+   * Callback when close button is clicked
+   */
+  onClose?: () => void;
   /**
    * Toast content
    */
@@ -31,11 +38,39 @@ const toastClass: { [key in ToastTypes]: string } = {
   info: 'bg-sky-100 text-sky-600 border-sky-200',
 };
 
-const Toast = ({ type = 'success', className = '', children }: ToastProps) => {
+const Toast = ({
+  type = 'success',
+  className = '',
+  onClose,
+  closable,
+  children,
+}: ToastProps) => {
+  const [visible, setVisible] = useState(true);
+
+  if (!visible) {
+    return null;
+  }
+
+  function handleCloseClick() {
+    setVisible(false);
+
+    if (onClose) {
+      onClose();
+    }
+  }
+
   return (
     <div
-      className={`relative border-l-4 rounded-md max-w-lg border p-4 ${toastClass[type]} ${className}`}
+      className={`relative border-l-4 rounded-md max-w-lg border p-4 shadow-lg ${toastClass[type]} ${className}`}
     >
+      {closable && (
+        <button
+          onClick={handleCloseClick}
+          className="toast-close absolute right-1 top-1 p-2 opacity-80 rounded-full hover:bg-black/[0.05]"
+        >
+          <FaXmark />
+        </button>
+      )}
       {children}
     </div>
   );
@@ -48,17 +83,20 @@ Toast.Title = function Title({
   className?: string;
   children: React.ReactNode;
 }) {
-  return <h2 className={`font-bold mb-1 ${className}`}>{children}</h2>;
+  return (
+    <h2 className={`toast-title font-bold mb-1 ${className}`}>{children}</h2>
+  );
 };
 
-Toast.Close = function Title({ onClick }: { onClick: () => void }) {
+Toast.Content = function Content({
+  className,
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) {
   return (
-    <button
-      onClick={onClick}
-      className="absolute right-1 top-1 p-2 opacity-80 rounded-full hover:bg-black/[0.05]"
-    >
-      <FaXmark />
-    </button>
+    <div className={`toast-content font-light ${className}`}>{children}</div>
   );
 };
 
