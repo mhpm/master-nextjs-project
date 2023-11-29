@@ -46,10 +46,9 @@ const Modal = ({
   color = 'primary',
   onClose,
 }: ModaLProps) => {
-
   const ref = useRef<HTMLDivElement>(null);
 
-  const handleClickOutside = (event: MouseEvent) => {  
+  const handleClickOutside = (event: MouseEvent) => {
     if (ref.current && !ref.current.contains(event.target as Node)) {
       console.log('enter');
       onClose();
@@ -57,7 +56,7 @@ const Modal = ({
   };
 
   useEffect(() => {
-    if(show){
+    if (show) {
       document.addEventListener('click', handleClickOutside);
     } else {
       document.removeEventListener('click', handleClickOutside);
@@ -71,7 +70,7 @@ const Modal = ({
   const header = renderHeader ? (
     renderHeader
   ) : title ? (
-    <Header className={`p-4 text-white`}>
+    <Header>
       <h1>{title}</h1>
     </Header>
   ) : (
@@ -81,19 +80,22 @@ const Modal = ({
   const footer = renderFooter ? (
     renderFooter
   ) : (
-    <Footer className='flex justify-center'>
-      <button className="p-2 bg-neutral-700 px-5 rounded-lg text-white" onClick={onClose}>
+    <Footer className="flex justify-center">
+      <button
+        className="p-2 bg-neutral-500 px-5 rounded-lg text-white"
+        onClick={onClose}
+      >
         Close
       </button>
     </Footer>
   );
 
   return show ? (
-    <div ref={ref} className='bg-neutral-500 p-5 rounded-md'>
+    <Container ref={ref} className="bg-neutral-500 rounded-md">
       {header}
-      <Body className="px-6 pt-8">{children}</Body>
+      <Body className="">{children}</Body>
       {footer}
-    </div>
+    </Container>
   ) : (
     <></>
   );
