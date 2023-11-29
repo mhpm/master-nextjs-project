@@ -16,7 +16,6 @@ export default function Home() {
       <Toast
         type="warning"
         closable
-        onClose={() => console.log('Close Clicked')}
       >
         <Toast.Title>Warning</Toast.Title>
         <Toast.Content>

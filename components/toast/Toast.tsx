@@ -44,7 +44,7 @@ const Toast = ({
   onClose,
   closable,
   children,
-}: ToastProps) => {
+}: ToastProps) => { 
   const [visible, setVisible] = useState(true);
 
   if (!visible) {
