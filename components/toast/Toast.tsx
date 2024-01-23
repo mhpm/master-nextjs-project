@@ -1,18 +1,25 @@
 import { useState } from 'react';
 import { FaXmark } from 'react-icons/fa6';
 
-enum ToastTypes {
+enum ToastVariations {
   success = 'success',
   warning = 'warning',
   danger = 'danger',
   info = 'info',
 }
 
-interface ToastProps {
+const toastClass: { [key in ToastVariations]: string } = {
+  success: 'bg-green-100 text-green-600 border-green-200',
+  warning: 'bg-yellow-100 text-yellow-600 border-yellow-200',
+  danger: 'bg-red-100 text-red-600 border-red-200',
+  info: 'bg-sky-100 text-sky-600 border-sky-200',
+};
+
+export interface ToastProps {
   /**
    * Toast title
    */
-  type?: keyof typeof ToastTypes;
+  type?: keyof typeof ToastVariations;
   /**
    * Optional Classes
    */
@@ -28,15 +35,8 @@ interface ToastProps {
   /**
    * Toast content
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
-
-const toastClass: { [key in ToastTypes]: string } = {
-  success: 'bg-green-100 text-green-600 border-green-200',
-  warning: 'bg-yellow-100 text-yellow-600 border-yellow-200',
-  danger: 'bg-red-100 text-red-600 border-red-200',
-  info: 'bg-sky-100 text-sky-600 border-sky-200',
-};
 
 const Toast = ({
   type = 'success',
@@ -44,7 +44,7 @@ const Toast = ({
   onClose,
   closable,
   children,
-}: ToastProps) => { 
+}: ToastProps) => {
   const [visible, setVisible] = useState(true);
 
   if (!visible) {
@@ -61,7 +61,7 @@ const Toast = ({
 
   return (
     <div
-      className={`relative border-l-4 rounded-md max-w-lg border p-4 shadow-lg ${toastClass[type]} ${className}`}
+      className={`relative border-l-4 rounded-md w-4/5 sm:max-w-lg border p-4 shadow-lg mb-2 ${toastClass[type]} ${className}`}
     >
       {closable && (
         <button
