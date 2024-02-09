@@ -15,7 +15,7 @@ const toastClass: { [key in ToastVariations]: string } = {
   info: 'bg-sky-100 text-sky-600 border-sky-200',
 };
 
-export interface ToastProps {
+export interface ToastProps extends React.ComponentProps<'div'> {
   /**
    * Toast title
    */
@@ -32,10 +32,6 @@ export interface ToastProps {
    * Callback when close button is clicked
    */
   onClose?: () => void;
-  /**
-   * Toast content
-   */
-  children?: React.ReactNode;
 }
 
 const Toast = ({

@@ -79,7 +79,8 @@ function TableComponent<Data>({
 
   const sortData = (field: string) => {
     const sortedArray: IFormatData<Data>[] = formatData
-      .sort((n1: any, n2: any) => (n1[field] < n2[field]) ? -1 : 1).slice(0);
+      .sort((n1: any, n2: any) => (n1[field] < n2[field] ? -1 : 1))
+      .slice(0);
 
     setFormatData(sortedArray);
   };
@@ -109,7 +110,7 @@ function TableComponent<Data>({
               <div className="flex">
                 {column.field.toString()}
                 <Image
-                  className="hover:bg-neutral-200 rounded-full p-[1px]"
+                  className="hover:bg-neutral-200 hover:opacity-60 rounded-full p-[1px] opacity-30"
                   priority
                   src={sort_icon}
                   alt="sorting"
