@@ -31,18 +31,18 @@ const Accordion: React.FC<AccordionProps> = ({
   };
 
   return (
-    <ul>
+    <ul className="w-full sm:max-w-[500px]">
       {activeItems.map((item, index) => (
         <div
-          className={`mb-2 bg-gray-700 text-white rounded-md transition-all duration-1000 ease-in-out`}
+          className={`mb-2 bg-gray-700 text-white rounded-md transition-all duration-1000 ease-in-out ?`}
         >
           <h2 className="block">
             <button
-              className=""
+              className="w-full"
               onClick={() => handleClick(item)}
               aria-expanded={item.open}
             >
-              <li key={index} className="p-3 cursor-pointer w-[500px]">
+              <li key={index} className="p-3 cursor-pointer">
                 <div className="flex justify-between items-center w-full">
                   {item.title}
                   <span
@@ -65,7 +65,7 @@ const Accordion: React.FC<AccordionProps> = ({
 
 const Content = ({ children }: { children: React.ReactNode }) => {
   return (
-    <section className="bg-gray-700 rounded-b-md px-3 pb-3 text-left w-[500px]">
+    <section className="bg-gray-700 rounded-b-md px-3 pb-3 text-left w-full">
       {children}
     </section>
   );

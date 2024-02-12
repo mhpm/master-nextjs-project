@@ -8,21 +8,20 @@ export default function Home() {
   const { openToast, toastList } = useToast();
 
   return (
-    <main className="min-h-screen sm:p-24 flex flex-col items-center justify-center">
-      <div>
-        <Accordion
-          items={[
-            { title: 'Title 1', content: 'accordion content 1', open: true },
-            {
-              title: 'Title 2',
-              content:
-                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quae officia, tenetur officiis ad quidem provident ipsam quaerat.',
-            },
-            { title: 'Title 3', content: 'accordion content 3' },
-            { title: 'Title 4', content: 'accordion content 4' },
-          ]}
-        ></Accordion>
-      </div>
+    <main className="min-h-screen sm:p-24 flex flex-col items-center justify-center p-5">
+      <Accordion
+        items={[
+          { title: 'Title 1', content: 'accordion content 1', open: true },
+          {
+            title: 'Title 2',
+            content:
+              'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quae officia, tenetur officiis ad quidem provident ipsam quaerat.',
+          },
+          { title: 'Title 3', content: 'accordion content 3' },
+          { title: 'Title 4', content: 'accordion content 4' },
+        ]}
+      ></Accordion>
+
       <div className="flex mb-5">
         <button
           onClick={() =>
