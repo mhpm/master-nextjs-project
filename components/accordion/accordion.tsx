@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IoIosArrowBack, IoIosArrowDown } from 'react-icons/io';
+import { IoIosArrowDown } from 'react-icons/io';
 
 interface AccordionItem {
   title: string;
@@ -16,55 +16,59 @@ const Accordion: React.FC<AccordionProps> = ({
   items,
   allowMultiple = false,
 }) => {
-  const [activeItems, setActiveItems] = useState<number[]>([]);
+  const [activeItems, setActiveItems] = useState<AccordionItem[]>(items);
 
-  const handleClick = (index: number) => {
-    if (allowMultiple) {
-      const updatedItems = [...activeItems];
-      if (updatedItems.includes(index)) {
-        updatedItems.splice(updatedItems.indexOf(index), 1);
-      } else {
-        updatedItems.push(index);
-      }
-      setActiveItems(updatedItems);
-    } else {
-      setActiveItems([index]);
-    }
-    console.log(activeItems);
+  const handleClick = (item: AccordionItem) => {
+    const updatedItems = activeItems.map((el) =>
+      el.title === item.title
+        ? { ...el, open: !item.open }
+        : allowMultiple
+        ? el
+        : { ...el, open: false }
+    );
+
+    setActiveItems(updatedItems);
   };
 
   return (
     <ul>
-      {items.map((item, index) => (
-        <li
-          key={index}
-          className="p-3 cursor-pointer bg-gray-700 rounded-lg mb-1 text-white w-[500px] transition ease-in-out"
+      {activeItems.map((item, index) => (
+        <div
+          className={`mb-2 bg-gray-700 text-white rounded-md transition-all duration-1000 ease-in-out`}
         >
-          <div className="flex justify-between items-center">
+          <h2 className="block">
             <button
-              className="w-full text-left"
-              onClick={() => handleClick(index)}
-              aria-expanded={activeItems.includes(index)}
+              className=""
+              onClick={() => handleClick(item)}
+              aria-expanded={item.open}
             >
-              {item.title}
+              <li key={index} className="p-3 cursor-pointer w-[500px]">
+                <div className="flex justify-between items-center w-full">
+                  {item.title}
+                  <span
+                    className={`transition ease-in-out ${
+                      !item.open && 'rotate-90'
+                    }`}
+                  >
+                    <IoIosArrowDown />
+                  </span>
+                </div>
+              </li>
             </button>
-            <span>
-              {activeItems.includes(index) ? (
-                <IoIosArrowDown />
-              ) : (
-                <IoIosArrowBack />
-              )}
-            </span>
-          </div>
-          {activeItems.includes(index) && <Content>{item.content}</Content>}
-        </li>
+          </h2>
+          {item.open && <Content>{item.content}</Content>}
+        </div>
       ))}
     </ul>
   );
 };
 
 const Content = ({ children }: { children: React.ReactNode }) => {
-  return <div className="mt-2 transition ease-in-out">{children}</div>;
+  return (
+    <section className="bg-gray-700 rounded-b-md px-3 pb-3 text-left w-[500px]">
+      {children}
+    </section>
+  );
 };
 
 export default Accordion;

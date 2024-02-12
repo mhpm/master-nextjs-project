@@ -16,7 +16,7 @@ export default function Home() {
             {
               title: 'Title 2',
               content:
-                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quae officia, tenetur officiis ad quidem provident ipsam quaerat',
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quae officia, tenetur officiis ad quidem provident ipsam quaerat.',
             },
             { title: 'Title 3', content: 'accordion content 3' },
             { title: 'Title 4', content: 'accordion content 4' },
