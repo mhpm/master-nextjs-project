@@ -1,6 +1,6 @@
 'use client';
 
-import { Toast } from '@/components';
+import { Toast, Accordion } from '@/components';
 import { ToastType } from '@/components/toast/Toast.Types';
 import { useToast } from '@/components/toast/useToast.hook';
 
@@ -9,6 +9,20 @@ export default function Home() {
 
   return (
     <main className="min-h-screen sm:p-24 flex flex-col items-center justify-center">
+      <div>
+        <Accordion
+          items={[
+            { title: 'Title 1', content: 'accordion content 1', open: true },
+            {
+              title: 'Title 2',
+              content:
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quae officia, tenetur officiis ad quidem provident ipsam quaerat',
+            },
+            { title: 'Title 3', content: 'accordion content 3' },
+            { title: 'Title 4', content: 'accordion content 4' },
+          ]}
+        ></Accordion>
+      </div>
       <div className="flex mb-5">
         <button
           onClick={() =>

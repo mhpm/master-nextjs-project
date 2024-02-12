@@ -2,7 +2,7 @@
 
 import { IColum } from '@/app/types/columns';
 import styles from './table.module.scss';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import Image from 'next/image';
 import sort_icon from '@/app/static/sort.svg';
 
