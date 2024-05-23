@@ -31,9 +31,10 @@ const Accordion: React.FC<AccordionProps> = ({
   };
 
   return (
-    <ul className="w-full sm:max-w-[500px]">
+    <div className="w-full sm:max-w-[500px]">
       {activeItems.map((item, index) => (
         <div
+          key={index}
           className={`mb-2 bg-gray-700 text-white rounded-md transition-all duration-1000 ease-in-out ?`}
         >
           <h2 className="block">
@@ -42,24 +43,22 @@ const Accordion: React.FC<AccordionProps> = ({
               onClick={() => handleClick(item)}
               aria-expanded={item.open}
             >
-              <li key={index} className="p-3 cursor-pointer">
-                <div className="flex justify-between items-center w-full">
-                  {item.title}
-                  <span
-                    className={`transition ease-in-out ${
-                      !item.open && 'rotate-90'
-                    }`}
-                  >
-                    <IoIosArrowDown />
-                  </span>
-                </div>
-              </li>
+              <div className="p-3 cursor-pointer flex justify-between items-center w-full">
+                {item.title}
+                <span
+                  className={`transition ease-in-out ${
+                    !item.open && 'rotate-90'
+                  }`}
+                >
+                  <IoIosArrowDown />
+                </span>
+              </div>
             </button>
           </h2>
           {item.open && <Content>{item.content}</Content>}
         </div>
       ))}
-    </ul>
+    </div>
   );
 };
 

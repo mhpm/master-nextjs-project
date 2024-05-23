@@ -1,26 +1,37 @@
 'use client';
 
-import { Toast, Accordion } from '@/components';
+import { Toast, Accordion, AccordionContainer } from '@/components';
 import { ToastType } from '@/components/toast/Toast.Types';
 import { useToast } from '@/components/toast/useToast.hook';
+
+const data = [
+  { title: 'Title 1', content: 'accordion content 1', open: true },
+  {
+    title: 'Title 2',
+    content:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quae officia.',
+  },
+  { title: 'Title 3', content: 'accordion content 3' },
+  { title: 'Title 4', content: 'accordion content 4' },
+];
 
 export default function Home() {
   const { openToast, toastList } = useToast();
 
   return (
     <main className="min-h-screen sm:p-24 flex flex-col items-center justify-center p-5">
-      <Accordion
-        items={[
-          { title: 'Title 1', content: 'accordion content 1', open: true },
-          {
-            title: 'Title 2',
-            content:
-              'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quae officia, tenetur officiis ad quidem provident ipsam quaerat.',
-          },
-          { title: 'Title 3', content: 'accordion content 3' },
-          { title: 'Title 4', content: 'accordion content 4' },
-        ]}
-      ></Accordion>
+      <Accordion items={data}></Accordion>
+      <br />
+      <AccordionContainer>
+        {data.map((item, index) => (
+          <AccordionContainer.Item
+            key={index}
+            open={item.open}
+            title={item.title}
+            content={item.content}
+          />
+        ))}
+      </AccordionContainer>
 
       <div className="flex mb-5">
         <button
